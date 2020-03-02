@@ -24,11 +24,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     # VERIFY KEY WITH SERVER
     encrypted_message = encrypt('sessioncipherkey', key)
     s.send(encrypted_message.encode())
+    print("Client sent encrypted message to server")
     # RECEIVE ENCRYPTED MESSAGE AND VERIFY MESSAGE
     data = s.recv(1024).decode()
     if data == encrypt("sessioncipherkeyacknowledgment", key):
         # ENCRYPT MESSAGE USING KEY
         message = encrypt('Final transmission', key)
         s.send(message.encode())
+        print("Sending final message")
 
     s.close()

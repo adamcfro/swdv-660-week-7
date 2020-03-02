@@ -33,6 +33,7 @@ while True:
         print(f"Server received proper key from client")
         acknowledgment = encrypt("sessioncipherkeyacknowledgment", key)
         c.send(acknowledgment.encode())
+        print("Ready for transmission...")
     elif data == encrypt("Final transmission", key):
         print("Final message received")
     # CLOSE SERVER
